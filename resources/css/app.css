@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+    --color-stone-50: #fbf9f3;
+    --color-stone-100: #f4f0e8;
+    --color-stone-200: #e4ddd0;
+    --color-stone-300: #cfc5b4;
+    --color-stone-400: #a99e8c;
+    --color-stone-500: #817867;
+    --color-stone-600: #6e6a60;
+    --color-stone-700: #47443d;
+    --color-stone-900: #24231f;
+    --color-amber-50: #f3f5ed;
+    --color-amber-100: #e7ebdb;
+    --color-amber-700: #667a5e;
+    --color-amber-800: #52634c;
+    --color-amber-900: #29352c;
+    --color-amber-950: #24231f;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: #f4f0e8;
+        color: #24231f;
+        font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    button,
+    input,
+    textarea {
+        font: inherit;
+    }
+
+    :focus-visible {
+        outline: 2px solid #52634c;
+        outline-offset: 3px;
+    }
+}
+
+.app-page {
+    background: #f4f0e8;
+}
+
+.app-header {
+    border-color: rgba(36, 35, 31, 0.18);
+    background: #f4f0e8;
+}
+
+.app-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: min(100% - 48px, 1440px);
+    margin-inline: auto;
+    padding-block: 18px;
+}
+
+.app-brand {
+    font-family: "Playfair Display", Georgia, serif;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.app-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px 22px;
+    font-size: 12px;
+}
+
+.app-nav a,
+.app-nav button {
+    transition: color 0.2s ease;
+}
+
+.app-nav a:hover,
+.app-nav button:hover {
+    color: #754a32;
+}
+
+.app-nav .app-nav-cta {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: #24231f;
+    color: #f4f0e8;
+}
+
+.app-nav .app-nav-cta:hover {
+    background: #52634c;
+    color: #f4f0e8;
+}
+
+.app-nav form {
+    margin: 0;
+}
+
+.app-main {
+    width: min(100% - 48px, 1280px);
+    margin-inline: auto;
+}
+
+.auth-page {
+    min-height: 100vh;
+    background: #f4f0e8;
+    color: #24231f;
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.auth-shell {
+    width: min(100%, 1600px);
+    min-height: 100vh;
+    margin-inline: auto;
+    padding: 0 clamp(22px, 6vw, 88px) 24px;
+}
+
+.auth-notice {
+    margin-inline: calc(clamp(22px, 6vw, 88px) * -1);
+    padding: 10px 20px;
+    background: #52634c;
+    color: #f8f5ed;
+    font-size: 10px;
+    text-align: center;
+}
+
+.auth-header {
+    display: flex;
+    min-height: 82px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(36, 35, 31, 0.18);
+}
+
+.auth-brand {
+    display: flex;
+    flex-direction: column;
+    color: #24231f;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.auth-brand small {
+    margin-top: 6px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.auth-home-link {
+    color: #52634c;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.auth-main {
+    display: grid;
+    width: min(100%, 1160px);
+    min-height: min(760px, calc(100vh - 155px));
+    grid-template-columns: 1fr 0.82fr;
+    align-items: center;
+    gap: clamp(36px, 8vw, 120px);
+    margin: 0 auto;
+    padding-block: 56px;
+}
+
+.auth-intro .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #52634c;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.auth-intro .eyebrow::before {
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+}
+
+.auth-intro h1 {
+    max-width: 600px;
+    margin: 22px 0 18px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(45px, 6vw, 78px);
+    font-weight: 500;
+    line-height: 1.02;
+}
+
+.auth-intro p {
+    max-width: 440px;
+    margin-bottom: 28px;
+    color: #6e6a60;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.auth-photo {
+    width: min(100%, 520px);
+    height: 230px;
+    object-fit: cover;
+}
+
+.auth-form-area {
+    width: 100%;
+}
+
+.auth-form {
+    border: 1px solid #e4ddd0;
+    background: #fbf9f3;
+    padding: clamp(24px, 4vw, 42px);
+    box-shadow: 0 18px 55px rgba(36, 35, 31, 0.06);
+}
+
+.auth-form input:not([type="checkbox"]) {
+    min-height: 48px;
+    border: 1px solid #cfc5b4;
+    background: #fff;
+    padding-inline: 14px;
+}
+
+.auth-form button[type="submit"] {
+    min-height: 48px;
+    background: #24231f;
+}
+
+.auth-form button[type="submit"]:hover {
+    background: #52634c;
+}
+
+.auth-form a {
+    color: #52634c;
+}
+
+.auth-form a:hover {
+    color: #754a32;
+}
+
+.auth-footer {
+    border-top: 1px solid rgba(36, 35, 31, 0.18);
+    padding-top: 18px;
+    color: #6e6a60;
+    font-size: 10px;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .app-header-inner,
+    .app-main {
+        width: min(100% - 32px, 1280px);
+    }
+
+    .auth-main {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-block: 42px;
+    }
+
+    .app-header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .app-nav {
+        justify-content: flex-start;
+        gap: 10px 18px;
+    }
+
+    .auth-intro h1 {
+        max-width: 520px;
+        font-size: clamp(42px, 11vw, 62px);
+    }
+
+    .auth-photo {
+        height: 170px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-shell {
+        padding-inline: 18px;
+    }
+
+    .auth-notice {
+        margin-inline: -18px;
+        font-size: 9px;
+    }
+
+    .auth-header {
+        min-height: 72px;
+    }
+
+    .auth-main {
+        padding-block: 32px;
+    }
+
+    .auth-photo {
+        height: 135px;
+    }
+}
