@@ -112,12 +112,13 @@
         .story-trigger { border: 0; background: transparent; padding: 0; cursor: pointer; color: inherit; }
         .story-backdrop { position: fixed; inset: 0; z-index: 25; background: rgba(22, 18, 15, .36); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
         .story-backdrop.is-visible { opacity: 1; pointer-events: auto; }
-        .story-panel { position: fixed; top: 0; right: 0; z-index: 30; width: min(420px, 92vw); height: 100vh; padding: clamp(24px, 4vw, 42px); background: #f8f3eb; border-left: 1px solid rgba(36, 35, 31, .15); box-shadow: -20px 0 40px rgba(36, 35, 31, .12); transform: translateX(110%); transition: transform .32s ease; }
+        .story-panel { position: fixed; inset: 0; z-index: 30; display: flex; width: 100%; height: 100vh; height: 100dvh; flex-direction: column; overflow-y: auto; padding: clamp(24px, 5vw, 72px) clamp(24px, 8vw, 120px); background: #f8f3eb; transform: translateX(100%); transition: transform .32s ease; }
         .story-panel.is-open { transform: translateX(0); }
-        .story-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+        .story-panel-header { display: flex; width: min(100%, 1120px); align-items: center; justify-content: space-between; gap: 16px; margin: 0 auto clamp(42px, 8vh, 90px); }
+        .story-panel-content { width: min(100%, 1120px); margin: auto; }
         .story-panel .eyebrow { color: var(--coffee); }
-        .story-panel h3 { margin: 14px 0 16px; font-family: var(--serif); font-size: clamp(34px, 5vw, 52px); line-height: 1; }
-        .story-panel p { margin: 0 0 18px; color: var(--muted); line-height: 1.8; font-size: 14px; }
+        .story-panel h3 { max-width: 1000px; margin: 18px 0 28px; font-family: var(--serif); font-size: clamp(42px, 8vw, 92px); font-weight: 500; line-height: 1.02; }
+        .story-panel p { max-width: 820px; margin: 0 0 18px; color: var(--muted); line-height: 1.8; font-size: clamp(15px, 1.5vw, 18px); }
         .story-close { border: 1px solid var(--line); background: transparent; color: var(--ink); width: 42px; height: 42px; font-size: 22px; cursor: pointer; }
 
         .footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 28px clamp(22px, 5.4vw, 88px); border-top: 1px solid var(--line); }
@@ -191,12 +192,14 @@
             <div class="eyebrow">Latar belakang</div>
             <button type="button" class="story-close" aria-label="Tutup panel" data-close-story>×</button>
         </div>
-        <div class="eyebrow">DKVoc</div>
-        <h3>Project ini lahir dari rasa ingin membuat kopi lebih dekat dengan keseharian.</h3>
-        <p>DKVoc adalah eksperimen toko kopi digital yang menggabungkan pengalaman browsing produk, eksplorasi rasa, dan proses pemesanan yang cepat. Proyek ini dibangun untuk menampilkan bagaimana biji kopi pilihan bisa lebih mudah dipahami, dinikmati, dan dibeli oleh orang-orang yang ingin menikmati seduhan di rumah.</p>
-        <p>DKVoc juga merupakan proyek mandiri yang saya kerjakan sebagai bagian dari pembelajaran di SMK. Melalui proyek ini, saya ingin menerapkan hal-hal yang saya pelajari sambil membangun pengalaman belanja kopi yang hangat, praktis, dan mudah digunakan.</p>
-        <p>Di balik tampilan yang sederhana, project ini juga berfungsi sebagai ruang belajar dalam membangun pengalaman berbelanja yang terasa lebih hangat, lebih personal, dan lebih relevan dengan rutinitas manusia modern.</p>
-        <a class="button-dark" href="#menu" data-close-story>Jelajahi kopi</a>
+        <div class="story-panel-content">
+            <div class="eyebrow">DKVoc</div>
+            <h3>Project ini lahir dari rasa ingin membuat kopi lebih dekat dengan keseharian.</h3>
+            <p>DKVoc adalah eksperimen toko kopi digital yang menggabungkan pengalaman browsing produk, eksplorasi rasa, dan proses pemesanan yang cepat. Proyek ini dibangun untuk menampilkan bagaimana biji kopi pilihan bisa lebih mudah dipahami, dinikmati, dan dibeli oleh orang-orang yang ingin menikmati seduhan di rumah.</p>
+            <p>DKVoc juga merupakan proyek mandiri yang saya kerjakan sebagai bagian dari pembelajaran di SMK. Melalui proyek ini, saya ingin menerapkan hal-hal yang saya pelajari sambil membangun pengalaman belanja kopi yang hangat, praktis, dan mudah digunakan.</p>
+            <p>Di balik tampilan yang sederhana, project ini juga berfungsi sebagai ruang belajar dalam membangun pengalaman berbelanja yang terasa lebih hangat, lebih personal, dan lebih relevan dengan rutinitas manusia modern.</p>
+            <a class="button-dark" href="#menu" data-close-story>Jelajahi kopi</a>
+        </div>
     </aside>
 
     <header class="header">
