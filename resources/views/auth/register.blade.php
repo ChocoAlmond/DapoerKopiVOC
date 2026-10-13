@@ -8,7 +8,7 @@
 <form action="{{ url('/register') }}" method="POST" class="auth-form">
     @csrf
     <h1 class="font-serif text-3xl font-bold text-amber-950">Buat akun</h1>
-    <p class="mt-2 text-sm text-stone-600">Buat akun Dapoer Kopi VOC.</p>
+    <p class="mt-2 text-sm text-stone-600">Buat akun DKVoc.</p>
 
     <div class="mt-6 space-y-5">
         <div>

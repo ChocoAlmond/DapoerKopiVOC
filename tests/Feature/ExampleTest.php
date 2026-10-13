@@ -19,6 +19,6 @@ class ExampleTest extends TestCase
         $response->assertOk()
             ->assertSee('Temukan biji kopi')
             ->assertDontSee('SIMULASI TOKO ONLINE')
-            ->assertSee('Dapoer Kopi VOC');
+            ->assertSee('DKVoc');
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +34,12 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('cart/{menu}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('wishlist/{menu}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+    Route::post('menus/{menu}/rate', [MenuController::class, 'rate'])->name('menus.rate');
 
     Route::prefix('admin')->name('admin.')->middleware('admin')->group(function (): void {
+        Route::get('dashboard', [OrderController::class, 'dashboard'])->name('dashboard');
         Route::resource('menus', MenuController::class)->except('show');
         Route::get('orders', [OrderController::class, 'adminIndex'])->name('orders.index');
     });

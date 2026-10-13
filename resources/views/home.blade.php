@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f4f0e8">
-    <meta name="description" content="Jelajahi pilihan biji kopi sangrai Dapoer Kopi VOC. Temukan kopi untuk seduhan di rumah.">
-    <title>Dapoer Kopi VOC — Biji Kopi Sangrai Pilihan</title>
+    <meta name="description" content="Jelajahi pilihan biji kopi sangrai DKVoc. Temukan kopi untuk seduhan di rumah.">
+    <title>DKVoc — Biji Kopi Sangrai Pilihan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -108,6 +108,18 @@
         .closing .eyebrow { justify-content: center; }
         .closing h2 { max-width: 930px; margin: 22px auto 27px; font-family: var(--serif); font-size: clamp(49px, 8vw, 112px); font-weight: 500; letter-spacing: 0; line-height: .98; }
         .closing p { max-width: 470px; margin: 0 auto 30px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+        .story-trigger { border: 0; background: transparent; padding: 0; cursor: pointer; color: inherit; }
+        .story-backdrop { position: fixed; inset: 0; z-index: 25; background: rgba(22, 18, 15, .36); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+        .story-backdrop.is-visible { opacity: 1; pointer-events: auto; }
+        .story-panel { position: fixed; top: 0; right: 0; z-index: 30; width: min(420px, 92vw); height: 100vh; padding: clamp(24px, 4vw, 42px); background: #f8f3eb; border-left: 1px solid rgba(36, 35, 31, .15); box-shadow: -20px 0 40px rgba(36, 35, 31, .12); transform: translateX(110%); transition: transform .32s ease; }
+        .story-panel.is-open { transform: translateX(0); }
+        .story-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+        .story-panel .eyebrow { color: var(--coffee); }
+        .story-panel h3 { margin: 14px 0 16px; font-family: var(--serif); font-size: clamp(34px, 5vw, 52px); line-height: 1; }
+        .story-panel p { margin: 0 0 18px; color: var(--muted); line-height: 1.8; font-size: 14px; }
+        .story-close { border: 1px solid var(--line); background: transparent; color: var(--ink); width: 42px; height: 42px; font-size: 22px; cursor: pointer; }
+
         .footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 28px clamp(22px, 5.4vw, 88px); border-top: 1px solid var(--line); }
         .footer-brand { font-family: var(--serif); font-size: 19px; font-weight: 700; }
         .footer-nav { display: flex; gap: 22px; color: var(--muted); font-size: 10px; }
@@ -173,15 +185,34 @@
 </head>
 <body>
 <div class="site-shell">
+    <div id="story-backdrop" class="story-backdrop" aria-hidden="true"></div>
+    <aside id="project-story-panel" class="story-panel" aria-hidden="true" aria-label="Latar belakang project">
+        <div class="story-panel-header">
+            <div class="eyebrow">Latar belakang</div>
+            <button type="button" class="story-close" aria-label="Tutup panel" data-close-story>×</button>
+        </div>
+        <div class="eyebrow">DKVoc</div>
+        <h3>Project ini lahir dari rasa ingin membuat kopi lebih dekat dengan keseharian.</h3>
+        <p>DKVoc adalah eksperimen toko kopi digital yang menggabungkan pengalaman browsing produk, eksplorasi rasa, dan proses pemesanan yang cepat. Proyek ini dibangun untuk menampilkan bagaimana biji kopi pilihan bisa lebih mudah dipahami, dinikmati, dan dibeli oleh orang-orang yang ingin menikmati seduhan di rumah.</p>
+        <p>Di balik tampilan yang sederhana, project ini juga berfungsi sebagai ruang belajar dalam membangun pengalaman berbelanja yang terasa lebih hangat, lebih personal, dan lebih relevan dengan rutinitas manusia modern.</p>
+        <a class="button-dark" href="#menu" data-close-story>Jelajahi kopi</a>
+    </aside>
+
     <header class="header">
-        <a class="brand" href="{{ url('/') }}">Dapoer Kopi VOC<small>BIJI KOPI SANGRAI PILIHAN</small></a>
+        <a class="brand" href="{{ url('/') }}">DKVoc<small>BIJI KOPI SANGRAI PILIHAN</small></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">+</span></button>
         <nav class="nav" id="main-nav" aria-label="Navigasi utama">
             <a href="#cerita">Tentang kopi</a>
             <a href="#menu">Koleksi</a>
             <a href="#cara-belanja">Cara belanja</a>
             @auth
-                <a class="nav-cta" href="{{ auth()->user()->isAdmin() ? route('admin.menus.index') : route('menus.index') }}">{{ auth()->user()->isAdmin() ? 'Panel admin' : 'Buka katalog' }}</a>
+                @if (auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <a href="{{ route('admin.menus.index') }}">Kelola produk</a>
+                @else
+                    <a href="{{ route('wishlist.index') }}">Wishlist</a>
+                    <a href="{{ route('menus.index') }}">Buka katalog</a>
+                @endif
             @else
                 <a class="nav-auth-link" href="{{ route('login') }}">Masuk</a>
                 <a class="nav-cta" href="{{ route('register') }}">Daftar <span aria-hidden="true">↗</span></a>
@@ -192,12 +223,12 @@
     <main>
         <section class="hero" aria-labelledby="hero-title">
             <div class="reveal">
-                <div class="eyebrow">DAPOER KOPI VOC</div>
+                <div class="eyebrow">DKVoc</div>
                 <h1 id="hero-title">Temukan biji kopi <em>favoritmu.</em></h1>
                 <p class="hero-copy">Jelajahi pilihan biji kopi sangrai untuk teman seduh di rumah. Kenali karakter tiap produk, pilih jumlahnya, lalu lanjutkan pemesanan lewat katalog.</p>
                 <div class="hero-actions">
                     <a class="button-dark" href="#menu">Jelajahi koleksi <span aria-hidden="true">&nbsp;↗</span></a>
-                    <a class="text-link" href="#cerita">Kenali pilihan kopi <span aria-hidden="true">↓</span></a>
+                    <button class="story-trigger text-link" type="button" aria-expanded="false" aria-controls="project-story-panel">Latar belakang project <span aria-hidden="true">→</span></button>
                 </div>
             </div>
             <div class="hero-visual reveal">
@@ -219,7 +250,7 @@
             <div class="section-index">01 / PILIHAN KOPI</div>
             <div>
                 <h2>Seduhan nikmat dimulai dari <em>biji yang tepat.</em></h2>
-                <p class="intro-copy">Jelajahi pilihan biji kopi sangrai Dapoer Kopi VOC dan temukan karakter yang cocok dengan seleramu. Pilih kopi untuk melengkapi seduhan dan rutinitas harianmu.</p>
+                <p class="intro-copy">Jelajahi pilihan biji kopi sangrai DKVoc dan temukan karakter yang cocok dengan seleramu. Pilih kopi untuk melengkapi seduhan dan rutinitas harianmu.</p>
                 <a class="text-link intro-link" href="#menu">Lihat pilihan biji kopi <span aria-hidden="true">→</span></a>
             </div>
         </section>
@@ -261,7 +292,7 @@
                             <div class="menu-placeholder" aria-hidden="true">VOC</div>
                         @endif
                         <div class="menu-meta"><h3>{{ $menu->nama_menu }}</h3><span>Rp {{ number_format($menu->harga, 0, ',', '.') }}</span></div>
-                        <p>{{ $menu->deskripsi ?: 'Salah satu rasa yang menemani cerita Dapoer Kopi VOC.' }}</p>
+                        <p>{{ $menu->deskripsi ?: 'Salah satu rasa yang menemani cerita DKVoc.' }}</p>
                     </article>
                 @empty
                     <p class="empty-menu">Koleksi kopi sedang disiapkan. Kembali lagi untuk melihat biji kopi sangrai pilihan.</p>
@@ -284,7 +315,7 @@
         </section>
 
         <section class="closing">
-            <div class="eyebrow">DAPOER KOPI VOC · KOPI UNTUK JEDA SEHARI-HARI</div>
+            <div class="eyebrow">DKVoc · KOPI UNTUK JEDA SEHARI-HARI</div>
             <h2>Seduh sesuatu yang kamu suka.</h2>
             <p>Jelajahi pilihan biji kopi sangrai untuk seduhan favorit di rumah.</p>
             <a class="button-dark" href="#menu">Lihat koleksi kopi <span aria-hidden="true">&nbsp;↑</span></a>
@@ -292,7 +323,7 @@
     </main>
 
     <footer class="footer">
-        <a class="footer-brand" href="{{ url('/') }}">Dapoer Kopi VOC</a>
+        <a class="footer-brand" href="{{ url('/') }}">DKVoc</a>
         <nav class="footer-nav" aria-label="Navigasi footer"><a href="#cerita">Tentang kopi</a><a href="#menu">Koleksi</a><a href="#cara-belanja">Cara belanja</a>@guest<a href="{{ route('login') }}">Masuk</a><a href="{{ route('register') }}">Daftar</a>@endguest</nav>
         <span class="copyright">Kopi untuk jeda sehari-hari · {{ date('Y') }}</span>
     </footer>
@@ -300,6 +331,37 @@
 <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNav = document.querySelector('#main-nav');
+    const storyBackdrop = document.getElementById('story-backdrop');
+    const storyPanel = document.getElementById('project-story-panel');
+    const storyTrigger = document.querySelector('.story-trigger');
+    const closeStoryButtons = document.querySelectorAll('[data-close-story]');
+
+    const setStoryOpen = (isOpen) => {
+        storyPanel?.classList.toggle('is-open', isOpen);
+        storyBackdrop?.classList.toggle('is-visible', isOpen);
+        storyPanel?.setAttribute('aria-hidden', String(!isOpen));
+        storyBackdrop?.setAttribute('aria-hidden', String(!isOpen));
+
+        if (storyTrigger) {
+            storyTrigger.setAttribute('aria-expanded', String(isOpen));
+        }
+    };
+
+    storyTrigger?.addEventListener('click', () => {
+        const isOpen = !storyPanel?.classList.contains('is-open');
+        setStoryOpen(isOpen);
+    });
+
+    closeStoryButtons.forEach((button) => {
+        button.addEventListener('click', () => setStoryOpen(false));
+    });
+
+    storyBackdrop?.addEventListener('click', () => setStoryOpen(false));
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setStoryOpen(false);
+        }
+    });
 
     menuToggle?.addEventListener('click', () => {
         const isOpen = mainNav.classList.toggle('is-open');

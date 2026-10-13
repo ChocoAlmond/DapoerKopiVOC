@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Kelola Menu') - {{ config('app.name', 'Dapoer Kopi VOC') }}</title>
+    <title>@yield('title', 'Kelola Menu') - {{ config('app.name', 'DKVoc') }}</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
@@ -11,15 +11,17 @@
 <body class="app-page min-h-screen text-stone-900">
     <header class="app-header border-b">
         <div class="app-header-inner">
-            <a href="{{ url('/') }}" class="app-brand text-2xl font-bold text-amber-950">Dapoer Kopi VOC</a>
+            <a href="{{ url('/') }}" class="app-brand text-2xl font-bold text-amber-950">DKVoc</a>
             <nav class="app-nav" aria-label="Navigasi akun">
                 <a href="{{ url('/') }}" class="font-medium text-stone-600">Beranda</a>
                 <a href="{{ route('menus.index') }}" class="font-medium text-stone-600">Katalog kopi</a>
                 @auth
                     @if (auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="font-semibold text-amber-800">Dashboard</a>
                         <a href="{{ route('admin.menus.index') }}" class="font-semibold text-amber-800">Kelola produk</a>
                         <a href="{{ route('admin.orders.index') }}" class="font-semibold text-amber-800">Pesanan masuk</a>
                     @else
+                        <a href="{{ route('wishlist.index') }}" class="font-semibold text-stone-600">Wishlist</a>
                         <a href="{{ route('orders.index') }}" class="font-semibold text-stone-600">Pesanan saya</a>
                         <a href="{{ route('cart.index') }}" class="app-nav-cta">Keranjang ({{ count(session('cart', [])) }})</a>
                     @endif
