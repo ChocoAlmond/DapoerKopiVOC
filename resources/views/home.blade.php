@@ -194,6 +194,7 @@
         <div class="eyebrow">DKVoc</div>
         <h3>Project ini lahir dari rasa ingin membuat kopi lebih dekat dengan keseharian.</h3>
         <p>DKVoc adalah eksperimen toko kopi digital yang menggabungkan pengalaman browsing produk, eksplorasi rasa, dan proses pemesanan yang cepat. Proyek ini dibangun untuk menampilkan bagaimana biji kopi pilihan bisa lebih mudah dipahami, dinikmati, dan dibeli oleh orang-orang yang ingin menikmati seduhan di rumah.</p>
+        <p>DKVoc juga merupakan proyek mandiri yang saya kerjakan sebagai bagian dari pembelajaran di SMK. Melalui proyek ini, saya ingin menerapkan hal-hal yang saya pelajari sambil membangun pengalaman belanja kopi yang hangat, praktis, dan mudah digunakan.</p>
         <p>Di balik tampilan yang sederhana, project ini juga berfungsi sebagai ruang belajar dalam membangun pengalaman berbelanja yang terasa lebih hangat, lebih personal, dan lebih relevan dengan rutinitas manusia modern.</p>
         <a class="button-dark" href="#menu" data-close-story>Jelajahi kopi</a>
     </aside>
