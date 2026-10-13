@@ -19,6 +19,9 @@ class ExampleTest extends TestCase
         $response->assertOk()
             ->assertSee('Temukan biji kopi')
             ->assertDontSee('SIMULASI TOKO ONLINE')
-            ->assertSee('DKVoc');
+            ->assertSee('DKVoc')
+            ->assertSee('website simulasi toko kopi digital')
+            ->assertSee('tidak menerima pesanan atau pembayaran sungguhan')
+            ->assertSee('dinilai oleh guru');
     }
 }
