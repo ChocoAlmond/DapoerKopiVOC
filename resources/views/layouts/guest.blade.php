@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - {{ config('app.name', 'DKVoc') }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/DapoerKopiIcon.png') }}">
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
@@ -11,7 +12,10 @@
 <body class="auth-page">
     <div class="auth-shell">
         <header class="auth-header">
-            <a href="{{ url('/') }}" class="auth-brand">DKVoc<small>BIJI KOPI SANGRAI PILIHAN</small></a>
+            <a href="{{ url('/') }}" class="auth-brand auth-brand-with-icon">
+                <img src="{{ asset('images/DapoerKopiIcon.png') }}" alt="" aria-hidden="true">
+                <span>DKVoc<small>BIJI KOPI SANGRAI PILIHAN</small></span>
+            </a>
             <a href="{{ url('/') }}" class="auth-home-link">Kembali ke beranda</a>
         </header>
 

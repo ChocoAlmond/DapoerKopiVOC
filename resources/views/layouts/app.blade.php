@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Kelola Menu') - {{ config('app.name', 'DKVoc') }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/DapoerKopiIcon.png') }}">
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
@@ -11,7 +12,10 @@
 <body class="app-page min-h-screen text-stone-900">
     <header class="app-header border-b">
         <div class="app-header-inner">
-            <a href="{{ url('/') }}" class="app-brand text-2xl font-bold text-amber-950">DKVoc</a>
+            <a href="{{ url('/') }}" class="app-brand inline-flex items-center gap-3 text-2xl font-bold text-amber-950">
+                <img src="{{ asset('images/DapoerKopiIcon.png') }}" alt="" aria-hidden="true" class="size-10 shrink-0 object-contain">
+                <span>DKVoc</span>
+            </a>
             <nav class="app-nav" aria-label="Navigasi akun">
                 <a href="{{ url('/') }}" class="font-medium text-stone-600">Beranda</a>
                 <a href="{{ route('menus.index') }}" class="font-medium text-stone-600">Katalog kopi</a>

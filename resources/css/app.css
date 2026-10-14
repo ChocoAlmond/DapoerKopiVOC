@@ -67,9 +67,19 @@
 }
 
 .app-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-family: "Playfair Display", Georgia, serif;
     line-height: 1;
     white-space: nowrap;
+}
+
+.app-brand img {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    object-fit: contain;
 }
 
 .app-nav {
@@ -154,6 +164,24 @@
     font-size: 21px;
     font-weight: 700;
     line-height: 1;
+}
+
+.auth-brand-with-icon {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-brand-with-icon img {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.auth-brand-with-icon span {
+    display: flex;
+    flex-direction: column;
 }
 
 .auth-brand small {

@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#f4f0e8">
     <meta name="description" content="Jelajahi pilihan biji kopi sangrai DKVoc. Temukan kopi untuk seduhan di rumah.">
     <title>DKVoc — Biji Kopi Sangrai Pilihan</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/DapoerKopiIcon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +32,9 @@
         .topline { display: flex; justify-content: center; padding: 10px 24px; background: var(--leaf); color: #f8f5ed; font-size: 10px; letter-spacing: 0; text-align: center; }
         .topline span { opacity: .94; }
         .header { display: flex; align-items: center; justify-content: space-between; padding: 23px clamp(22px, 5.4vw, 88px); border-bottom: 1px solid var(--line); }
-        .brand { display: flex; flex-direction: column; font-family: var(--serif); font-size: 21px; font-weight: 700; line-height: .95; }
+        .brand { display: flex; align-items: center; gap: 11px; font-family: var(--serif); font-size: 21px; font-weight: 700; line-height: .95; }
+        .brand img { width: 48px; height: 48px; flex: 0 0 auto; object-fit: contain; }
+        .brand-copy { display: flex; flex-direction: column; }
         .brand small { margin-top: 6px; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0; }
         .nav { display: flex; align-items: center; gap: clamp(17px, 3vw, 42px); font-size: 12px; font-weight: 600; }
         .nav a:not(.nav-cta):hover, .text-link:hover { color: var(--coffee); }
@@ -203,7 +206,10 @@
     </aside>
 
     <header class="header">
-        <a class="brand" href="{{ url('/') }}">DKVoc<small>BIJI KOPI SANGRAI PILIHAN</small></a>
+        <a class="brand" href="{{ url('/') }}">
+            <img src="{{ asset('images/DapoerKopiIcon.png') }}" alt="" aria-hidden="true">
+            <span class="brand-copy">DKVoc<small>BIJI KOPI SANGRAI PILIHAN</small></span>
+        </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">+</span></button>
         <nav class="nav" id="main-nav" aria-label="Navigasi utama">
             <a href="#cerita">Tentang kopi</a>
